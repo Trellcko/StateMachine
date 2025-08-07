@@ -43,6 +43,8 @@ public class ExampleBehaviour : MonoBehaviour
    {
       _stateMachine.AddStates(new EmptyState(_stateMachine),
       new BootstrapState(_stateMachine, _initService));
+
+      _stateMachine.SetState<BootstrapState>();
    }
 
    private void Update()
