@@ -6,18 +6,9 @@ namespace Trell.StateMachine
 {
     public class StateMachine
     {
-        private readonly Dictionary<Type, BaseState> _states;
+        private readonly Dictionary<Type, BaseState> _states = new();
 
         private BaseState _currentBaseState;
-
-        public StateMachine(params BaseState[] states)
-        {
-            _states = new();
-            foreach (BaseState state in states)
-            {
-                _states.Add(state.GetType(), state);
-            }
-        }
 
         public void AddState(params BaseState[] states)
         {
