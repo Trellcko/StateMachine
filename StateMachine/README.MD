@@ -20,12 +20,27 @@ public class BootstrapState : BaseStateWithoutPayload
    public BootstrapState(StateMachine stateMachine, IInitService initService) : base(stateMachine)
    {
       _initService = initService;
+      GoToState<EmptyState>(()=> _initService.IsInited);  
    }
 
-   public void Enter()
+   public overide void Enter()
    {
-      initService.Init();
-      GoToState<EmptyState>();
+      _initService.Init();
+   }
+}
+```
+
+#### How to Init StateMachine
+
+```csharp
+public class ExampleBehaviour : MonoBehaviour
+{
+   private StateMachine _stateMachine;
+   private IInitService _initService;
+
+   private void Awake()
+   {
+      _stateMachine = new(new EmptyState())
    }
 }
 ```
