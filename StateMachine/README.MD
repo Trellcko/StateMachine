@@ -10,7 +10,7 @@
 3. Paste:  
    `https://github.com/Trellcko/StateMachine.git`
 
-#### How to create Own State
+#### How to create states
 
 ```csharp
 public class BootstrapState : BaseStateWithoutPayload
@@ -30,7 +30,7 @@ public class BootstrapState : BaseStateWithoutPayload
 }
 ```
 
-#### How to Init StateMachine
+#### How to use the stateMachine
 
 ```csharp
 public class ExampleBehaviour : MonoBehaviour
