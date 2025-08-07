@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Trell.StateMachine
 {
-    public class StateMachine
+    public class StateMachine : IStateMachine
     {
         private readonly Dictionary<Type, BaseState> _states = new();
 
