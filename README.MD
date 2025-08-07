@@ -10,6 +10,14 @@
 3. Paste:  
    `https://github.com/Trellcko/StateMachine.git`
 
+## Usage
+
+To use the State Machine in your own scripts, you must reference its assembly definition.
+
+1. In your project, create an `.asmdef` file (if you don't already have one).
+2. In the Inspector, add a reference to the `Trellcko.StateMachine` assembly.
+3. You can now use the package's namespaces in your code:
+
 ## 🛠️ How To Use
 #### Creating States
 
@@ -21,7 +29,7 @@ public class BootstrapState : BaseStateWithoutPayload
    public BootstrapState(StateMachine stateMachine, IInitService initService) : base(stateMachine)
    {
       _initService = initService;
-      GoToState<EmptyState>(()=> _initService.IsInited);  
+      GoToState<EmptyState>(()=> _initService.IsInited, 0);  
    }
 
    public overide void Enter()
@@ -36,7 +44,7 @@ public class BootstrapState : BaseStateWithoutPayload
 ```csharp
 public class ExampleBehaviour : MonoBehaviour
 {
-   private readonly StateMachine _stateMachine = new();
+   private readonly IStateMachine _stateMachine = new StateMachine();
    private readonly IInitService _initService = new();
 
    private void Awake()
