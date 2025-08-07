@@ -10,3 +10,22 @@
 3. Paste:  
    `https://github.com/Trellcko/StateMachine.git`
 
+#### How to create Own State
+
+```csharp
+public class BootstrapState : BaseStateWithoutPayload
+{
+   private readonly IInitService _initService;
+
+   public BootstrapState(StateMachine stateMachine, IInitService initService) : base(stateMachine)
+   {
+      _initService = initService;
+   }
+
+   public void Enter()
+   {
+      initService.Init();
+      GoToState<EmptyState>();
+   }
+}
+```
