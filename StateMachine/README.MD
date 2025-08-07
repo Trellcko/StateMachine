@@ -35,12 +35,18 @@ public class BootstrapState : BaseStateWithoutPayload
 ```csharp
 public class ExampleBehaviour : MonoBehaviour
 {
-   private StateMachine _stateMachine;
-   private IInitService _initService;
+   private readonly StateMachine _stateMachine = new();
+   private readonly IInitService _initService = new();
 
    private void Awake()
    {
-      _stateMachine = new(new EmptyState())
+      _stateMachine.AddStates(new EmptyState(_stateMachine),
+      new BootstrapState(_stateMachine, _initService));
+   }
+
+   private void Update()
+   {
+      _stateMachine.Update();
    }
 }
 ```
